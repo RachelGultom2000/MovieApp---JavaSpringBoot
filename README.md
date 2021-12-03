@@ -41,3 +41,6 @@ mvn spring-boot:run
 
 4. GET : http://localhost:8080/movies/1/categories => menampilkan kategori dengan id movie dari tabel movie (relasi one-to-many)
 ![](img/CategoryList.PNG)
+
+## Postman Link ##
+https://documenter.getpostman.com/view/13118621/UVJfkbrW
