@@ -37,21 +37,7 @@ public class MovieController {
 		this.movieRepository = movieRepository;
 	}
 	
-//	@GetMapping("/movies")
-//	public Page<Movie> getAllMovies(Pageable pageable){
-//		return movieRepository.findAll(pageable);
-//	}
-	
-	@GetMapping("/movies/{id}")
-	public ResponseEntity<Movie> getMovieById(@PathVariable (value = "id") Long id)
-		throws ResourceNotFoundException{
-			Movie movie = movieRepository.findById(id)
-					.orElseThrow(() -> new ResourceNotFoundException("Movie not found on :" + id));
-			return  ResponseEntity.ok().body(movie);
-		}
-
-	
-	  @GetMapping("/movies")
+	@GetMapping("/movies")
 	  public ResponseEntity<List<Movie>> getAllMovies(@RequestParam(required = false) String title) {
 	    try {
 	      List<Movie> movies = new ArrayList<Movie>();
@@ -70,6 +56,16 @@ public class MovieController {
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
+	
+	
+	@GetMapping("/movies/{id}")
+	public ResponseEntity<Movie> getMovieById(@PathVariable (value = "id") Long id)
+		throws ResourceNotFoundException{
+			Movie movie = movieRepository.findById(id)
+					.orElseThrow(() -> new ResourceNotFoundException("Movie not found on :" + id));
+			return  ResponseEntity.ok().body(movie);
+		}
+
 	
 	@PostMapping("/movies")
 	public Movie createMovie(@Valid @RequestBody Movie movie) {
